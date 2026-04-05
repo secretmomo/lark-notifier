@@ -1,6 +1,6 @@
 {
   "name": "@secret-momo/lark-notifier",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "飞书 / Lark 消息通知封装（基于 @larksuiteoapi/node-sdk）",
   "type": "module",
   "main": "./lib/index.js",

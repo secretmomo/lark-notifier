@@ -1,5 +1,5 @@
 import { test, expect } from "bun:test";
-import { sendTextMessage, sendPostMessage, sendCardMessage } from "./index";
+import { sendTextMessage, sendPostMessage, sendCardMessage, errorCardMessage } from "./index";
 
 test("sendTextMessage", async () => {
   const result = await sendTextMessage(`TEST ${new Date().toISOString()}`);
@@ -68,5 +68,10 @@ test("sendCardMessage", async () => {
   });
 
   const result = await sendCardMessage(content);
+  expect(result).toBeDefined();
+});
+
+test("errorCardMessage", async () => {
+  const result = await errorCardMessage("测试错误信息");
   expect(result).toBeDefined();
 });

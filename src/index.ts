@@ -52,3 +52,50 @@ export async function sendCardMessage(content: string) {
     },
   });
 }
+
+export async function errorCardMessage(content: string) {
+  const tpl = {
+    schema: "2.0",
+    config: { update_multi: true },
+    header: {
+      template: "red",
+      padding: "8px 8px 8px 8px",
+      icon: { tag: "standard_icon", token: "buzz_outlined" },
+      title: { content: '错误提示', tag: "plain_text" },
+    },
+    body: {
+      direction: "vertical",
+      elements: [
+        {
+          tag: "markdown",
+          content: `<font color="red">${content}</font>`,
+          text_size: "normal_v2",
+          text_align: "left",
+          margin: "0px 0px 0px 0px",
+        },
+        process.env.RUN_URL ? {
+          tag: "button",
+          type: "danger_filled",
+          width: "default",
+          size: "tiny",
+          margin: "0px 0px 0px 0px",
+          behaviors: [
+            {
+              type: "open_url",
+              default_url: process.env.RUN_URL,
+            }
+          ],
+          text: {
+            tag: "plain_text",
+            content: "查看详情",
+            text_size: "normal_v2",
+            text_align: "left",
+            text_color: "default",
+          },
+        } : null,
+      ].filter(Boolean),
+    }
+  };
+
+  return await sendCardMessage(JSON.stringify(tpl));
+}
