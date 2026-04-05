@@ -1,5 +1,7 @@
 import * as lark from "@larksuiteoapi/node-sdk";
 
+export type { InteractiveCard } from '@larksuiteoapi/node-sdk';
+
 const client = new lark.Client({
   appId: process.env.LARK_APP_ID ?? "",
   appSecret: process.env.LARK_APP_SECRET ?? "",
